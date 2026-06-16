@@ -10,7 +10,6 @@
             var ua = navigator.userAgent;
             if (ua.indexOf('Line') > -1) {
                 var url = window.location.href;
-                // すでにパラメータが付いていない場合のみ付与してリロード
                 if (url.indexOf('openExternalBrowser=1') === -1) {
                     var sep = url.indexOf('?') > -1 ? '&' : '?';
                     window.location.href = url + sep + 'openExternalBrowser=1';
@@ -21,13 +20,12 @@
 
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <style>
-        body { margin: 0; background-color: #f7f7f7; }
+        body { margin: 0; background-color: #f7f7f7; font-family: sans-serif; }
         model-viewer {
             width: 100%;
             height: 100vh;
             --poster-color: #ffffff;
         }
-        /* ARボタンの見た目を調整 */
         #ar-button {
             background-color: white;
             border-radius: 30px;
@@ -42,13 +40,31 @@
             cursor: pointer;
             z-index: 100;
         }
+        .back-button {
+            display: block;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 <body>
 
+    <a href="https://render-works.com" class="back-button">
+        ← ホームページに戻る
+    </a>
+
     <model-viewer 
         src="chairglb.glb" 
-       
         ar 
         ar-modes="webxr scene-viewer quick-look" 
         camera-controls 
